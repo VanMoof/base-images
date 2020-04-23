@@ -16,3 +16,9 @@ workflows:
   publish:
     jobs:
     - publish_images
+  auto_publish:
+    triggers:
+      - schedule:
+          cron: "0 0 * * *"
+    jobs:
+      - publish_images
