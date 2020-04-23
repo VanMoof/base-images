@@ -4,8 +4,9 @@ jobs:
     machine: true
     steps:
       - checkout
-      - run: cd pubsub-emulator
-      - run: docker build -t vanmoof/pubsub-emulator:latest .
+      - run: |
+          cd pubsub-emulator
+          docker build -t vanmoof/pubsub-emulator:latest .
       - run: echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin
       - run: docker push vanmoof/pubsub-emulator:latest
 
