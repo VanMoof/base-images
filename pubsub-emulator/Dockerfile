@@ -2,6 +2,7 @@ FROM google/cloud-sdk:alpine
 
 MAINTAINER Noam Y. Tenne <noam@vanmoof.com>
 
+RUN apk add --no-cache openjdk11-jre
 RUN gcloud components install -q pubsub-emulator beta
 RUN gcloud components update -q
 
