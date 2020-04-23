@@ -6,9 +6,13 @@ jobs:
       - checkout
       - run: echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin
       - run: |
-          cd gcloud
-          docker build --pull -t vanmoof/gcloud:latest .
-          docker push vanmoof/gcloud:latest
+          cd firestore-emulator
+          docker build --pull -t vanmoof/firestore-emulator:latest .
+          docker push vanmoof/firestore-emulator:latest
+      - run: |
+          cd bigtable-emulator
+          docker build --pull -t vanmoof/bigtable-emulator:latest .
+          docker push vanmoof/bigtable-emulator:latest
       - run: |
           cd pubsub-emulator
           docker build --pull -t vanmoof/pubsub-emulator:latest .
