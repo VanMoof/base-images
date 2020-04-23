@@ -8,7 +8,7 @@ jobs:
       - run: |
           cd gcloud
           docker build --pull -t vanmoof/gcloud:latest .
-          docker push vanmoof/pubsub-gcloud:latest
+          docker push vanmoof/gcloud:latest
       - run: |
           cd pubsub-emulator
           docker build --pull -t vanmoof/pubsub-emulator:latest .
