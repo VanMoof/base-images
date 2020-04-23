@@ -4,11 +4,15 @@ jobs:
     machine: true
     steps:
       - checkout
+      - run: echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin
+      - run: |
+          cd gcloud
+          docker build ---pull -t vanmoof/gcloud:latest .
+          docker push vanmoof/pubsub-gcloud:latest
       - run: |
           cd pubsub-emulator
-          docker build -t vanmoof/pubsub-emulator:latest .
-      - run: echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin
-      - run: docker push vanmoof/pubsub-emulator:latest
+          docker build ---pull -t vanmoof/pubsub-emulator:latest .
+          docker push vanmoof/pubsub-emulator:latest
 
 
 workflows:
