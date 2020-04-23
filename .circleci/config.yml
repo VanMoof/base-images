@@ -7,11 +7,11 @@ jobs:
       - run: echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin
       - run: |
           cd gcloud
-          docker build ---pull -t vanmoof/gcloud:latest .
+          docker build --pull -t vanmoof/gcloud:latest .
           docker push vanmoof/pubsub-gcloud:latest
       - run: |
           cd pubsub-emulator
-          docker build ---pull -t vanmoof/pubsub-emulator:latest .
+          docker build --pull -t vanmoof/pubsub-emulator:latest .
           docker push vanmoof/pubsub-emulator:latest
 
 
