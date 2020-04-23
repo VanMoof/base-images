@@ -1,0 +1,17 @@
+version: 2.1
+jobs:
+  publish_images:
+    machine: true
+    steps:
+      - checkout
+      - run: cd pubsub-emulator
+      - run: docker build -t vanmoof/pubsub-emulator:latest .
+      - run: echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin
+      - run: docker push vanmoof/pubsub-emulator:latest
+
+
+workflows:
+  version: 2
+  publish:
+    jobs:
+    - publish_images
