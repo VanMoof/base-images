@@ -20,5 +20,6 @@ workflows:
     triggers:
       - schedule:
           cron: "0 0 * * *"
+          filters:
     jobs:
       - publish_images
