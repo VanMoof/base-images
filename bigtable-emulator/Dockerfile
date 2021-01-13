@@ -1,10 +1,12 @@
-FROM google/cloud-sdk:alpine
+FROM alpine/gcloud:310.0.0
 
-MAINTAINER Noam Y. Tenne <noam@vanmoof.com>
+LABEL mantainer="Juanita De La Cuesta <Juanita@vanmoof.com>"
 
 RUN gcloud components install -q bigtable beta
-RUN gcloud components update -q
-
 EXPOSE 8086
 
-CMD ["gcloud", "beta", "emulators", "bigtable", "start", "--host-port", "0.0.0.0:8086"]
+
+RUN echo $BIGTABLE_EMULATOR_HOST
+ENTRYPOINT ["gcloud", "beta", "emulators", "bigtable"]
+CMD ["start", "--host-port", "0.0.0.0:8086"]
+
