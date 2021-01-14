@@ -1,11 +1,11 @@
-FROM google/cloud-sdk:alpine
+FROM alpine/gcloud:310.0.0
 
-MAINTAINER Noam Y. Tenne <noam@vanmoof.com>
+LABEL mantainer="Juanita De La Cuesta <Juanita@vanmoof.com>"
 
 RUN apk add --no-cache openjdk11-jre
 RUN gcloud components install -q pubsub-emulator beta
-RUN gcloud components update -q
 
 EXPOSE 8085
 
-CMD ["gcloud", "beta", "emulators", "pubsub", "start", "--host-port", "0.0.0.0:8085"]
+ENTRYPOINT ["gcloud", "beta", "emulators", "pubsub"]
+CMD ["start", "--host-port", "0.0.0.0:8085"]
